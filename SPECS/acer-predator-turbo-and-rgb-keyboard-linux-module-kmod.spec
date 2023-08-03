@@ -16,7 +16,8 @@ Release:        1%{?rel:.%{rel}}%{?dist}
 License:        GPLv2+
 
 URL:            https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module
-Source0:        %{url}/archive/v%{version}/%{prjname}-%{version}%{?gitdate:-%{rel}}.tar.gz
+# Source0:        %{url}/archive/v%{version}/%{prjname}-%{version}%{?gitdate:-%{rel}}.tar.gz
+Source0:        https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module/archive/refs/heads/main.zip
 
 BuildRequires:  gcc
 BuildRequires:  elfutils-libelf-devel
