@@ -30,20 +30,21 @@ Requires:       python3
 
 %prep
 #setup -q -c
+tar zxvf %{_datadir}/%{name}/%{name}-%{version}-%{rel}.tar.gz
 
 
 %build
 #Nothing to build
-
-
-%install
-install -m755 -d $RPM_BUILD_ROOT%{_sysconfdir}/modules-load.d/
 cat > %{name}.conf << EOF
 wmi
 sparse-keymap
 video
 facer
 EOF
+
+
+%install
+install -m755 -d $RPM_BUILD_ROOT%{_sysconfdir}/modules-load.d/
 install -m 644 %{name}.conf $RPM_BUILD_ROOT%{_sysconfdir}/modules-load.d/%{name}.conf
 
 tar zxvf %{_datadir}/%{name}/%{name}-%{version}-%{rel}.tar.gz
