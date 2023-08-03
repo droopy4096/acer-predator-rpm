@@ -10,7 +10,7 @@ kmod:
 
 driver:
 	# rmbuild --define "_topdir ${PWD}" -ba SPECS/acer-predator-turbo-and-rgb-keyboard-linux-module.spec
-	$(CONTAINER_ENGINE) run --rm -t -v ${PWD}:/src:Z -w /src $(CONTAINER_NAME) scripts/builder.sh SPECS/acer-predator-turbo-and-rgb-keyboard-linux-module.spec
+	$(CONTAINER_ENGINE) run --rm -t -v ${PWD}:/src:Z -w /src $(CONTAINER_NAME) scripts/build_driver.sh SPECS/acer-predator-turbo-and-rgb-keyboard-linux-module.spec
 
 container:
 	$(CONTAINER_ENGINE) build --build-arg FEDORA_VERSION=$(FEDORA_VERSION) -f Dockerfile -t $(CONTAINER_NAME) .
