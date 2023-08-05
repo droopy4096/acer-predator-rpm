@@ -30,7 +30,10 @@ Requires:       python3
 
 %prep
 #setup -q -c
-tar zxvf %{_datadir}/%{name}/%{name}-%{version}-%{rel}.tar.gz
+# tar zxvf %{_datadir}/%{name}/%{name}-%{version}-%{rel}.tar.gz
+%setup -T -c -n %{name}-main
+cd ..
+unzip -u %{_datadir}/%{name}/main.zip
 
 
 %build
@@ -43,13 +46,18 @@ facer
 EOF
 
 
+%clean
+rm -rf ${RPM_BUILD_ROOT}
+
+
 %install
 install -m755 -d $RPM_BUILD_ROOT%{_sysconfdir}/modules-load.d/
 install -m 644 %{name}.conf $RPM_BUILD_ROOT%{_sysconfdir}/modules-load.d/%{name}.conf
 
-tar zxvf %{_datadir}/%{name}/%{name}-%{version}-%{rel}.tar.gz
+# tar zxvf %{_datadir}/%{name}/%{name}-%{version}-%{rel}.tar.gz
+# unzip -f %{_datadir}/%{name}/main.zip
 install -m755 -d $RPM_BUILD_ROOT%{_bindir}
-install -m755 %{name}/facer_rgb.py $RPM_BUILD_ROOT%{_bindir}
+install -m755 facer_rgb.py $RPM_BUILD_ROOT%{_bindir}
 
 %post
 _acerwmitest=$(lsmod | awk '{print $1}' | grep ^acer_wmi$)
